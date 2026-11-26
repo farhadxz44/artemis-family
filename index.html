@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>پنل مدیریت آرتمیس فمیلی</title>
+<style>
+:root{--bg:#090909;--panel:#151515;--panel2:#1d1b16;--gold:#d5aa45;--gold2:#f1d27a;--text:#f4f0e6;--muted:#aaa18e;--line:#393124;--red:#e16b63;--green:#78b88b}
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(ellipse at top,#272012 0,#0b0b0b 48%,#070707 100%);color:var(--text);font-family:Tahoma,Arial,sans-serif;min-height:100vh}
+header{padding:26px 5vw 18px;border-bottom:1px solid var(--line);background:#090909d9;position:sticky;top:0;z-index:3;backdrop-filter:blur(12px)}
+.brand{display:flex;align-items:center;gap:14px}.emblem{width:48px;height:48px;border:1px solid var(--gold);border-radius:12px;display:grid;place-items:center;color:var(--gold2);font-size:25px;box-shadow:0 0 22px #d5aa4525}
+h1{font-size:21px;margin:0;color:var(--gold2);letter-spacing:1px}.sub{font-size:11px;color:var(--muted);margin-top:6px}
+nav{display:flex;gap:8px;flex-wrap:wrap;margin-top:20px}.tab{border:1px solid var(--line);background:#111;color:var(--muted);padding:10px 15px;border-radius:9px;cursor:pointer;font:inherit;font-size:13px}.tab.active,.tab:hover{background:#332817;color:var(--gold2);border-color:var(--gold)}
+main{max-width:1180px;margin:26px auto;padding:0 20px 60px}.page{display:none}.page.active{display:block}.heading{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:18px}.heading h2{font-size:19px;margin:0;color:var(--gold2)}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:22px}.stat,.card{background:linear-gradient(145deg,#1a1916,#111);border:1px solid var(--line);border-radius:13px;padding:17px}.stat small{color:var(--muted)}.stat strong{display:block;font-size:25px;color:var(--gold2);margin-top:9px}
+.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}.card h3{margin:0 0 13px;font-size:15px;color:var(--gold2)}.muted{color:var(--muted);font-size:12px;line-height:1.9}
+button,.btn{background:linear-gradient(135deg,#d9b451,#a77b27);border:0;color:#17120a;border-radius:8px;padding:10px 14px;cursor:pointer;font:inherit;font-size:12px;font-weight:bold}.btn.secondary,button.secondary{background:#25221c;color:var(--gold2);border:1px solid var(--line)}button.danger{background:#3a1e1b;color:#ffb4ac;border:1px solid #63312c}.actions{display:flex;gap:7px;flex-wrap:wrap}
+input,select,textarea{width:100%;background:#0c0c0c;border:1px solid #443a29;color:var(--text);border-radius:8px;padding:11px;font:inherit;font-size:13px;outline:none}input:focus,textarea:focus,select:focus{border-color:var(--gold)}textarea{min-height:90px;resize:vertical}label{display:block;color:var(--muted);font-size:12px;margin:0 0 6px}.formgrid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}.field.full{grid-column:1/-1}.formbox{margin-bottom:17px}.tablewrap{overflow:auto;border:1px solid var(--line);border-radius:12px}table{width:100%;border-collapse:collapse;min-width:600px;background:#111}th,td{text-align:right;padding:12px;border-bottom:1px solid #302a20;font-size:12px}th{color:var(--gold2);background:#1b1812}td{color:#e8e1d2}.empty{text-align:center;color:var(--muted);padding:25px}.pill{display:inline-block;padding:4px 8px;border-radius:20px;background:#342b19;color:var(--gold2);font-size:11px}.pill.red{background:#3b211e;color:#ffaaa1}.item{padding:12px 0;border-bottom:1px solid #302a20}.item:last-child{border:0}.item strong{color:var(--gold2)}.item p{margin:6px 0 0;color:var(--muted);font-size:12px;line-height:1.8}.notice{background:#211b10;border:1px solid #4d3d1e;padding:12px;border-radius:10px;color:#d8c28b;font-size:12px;line-height:1.9;margin-bottom:16px}
+footer{text-align:center;color:#726a59;font-size:11px;padding:24px;border-top:1px solid var(--line)}
+@media(max-width:720px){.stats{grid-template-columns:repeat(2,1fr)}.grid{grid-template-columns:1fr}.heading{align-items:flex-start;flex-direction:column}.formgrid{grid-template-columns:1fr}header{position:static}}
+</style>
+</head>
+<body>
+<header><div class="brand"><div class="emblem">⚜</div><div><h1>𝐀𝐑𝐓𝐄𝐌𝐈𝐒 𝐅𝐀𝐌𝐈𝐋𝐘</h1><div class="sub">پنل مدیریت فمیلی | نسخه رایگان و آفلاین</div></div></div>
+<nav>
+<button class="tab active" data-page="home">داشبورد</button><button class="tab" data-page="members">اعضای فمیلی</button><button class="tab" data-page="fines">مدیریت جریمه‌ها</button><button class="tab" data-page="quests">کوئست‌ها</button><button class="tab" data-page="announcements">اطلاعیه‌ها</button><button class="tab" data-page="backup">پشتیبان‌گیری</button>
+</nav></header>
+<main>
+<section class="page active" id="home">
+<div class="heading"><h2>داشبورد مدیریت</h2><span class="pill">ARTEMIS MANAGEMENT</span></div>
+<div class="stats"><div class="stat"><small>تعداد اعضا</small><strong id="sMembers">۰</strong></div><div class="stat"><small>جریمه‌های ثبت‌شده</small><strong id="sFines">۰</strong></div><div class="stat"><small>مجموع جریمه‌ها</small><strong id="sTotal">۰$</strong></div><div class="stat"><small>کوئست‌های فعال</small><strong id="sQuests">۰</strong></div></div>
+<div class="grid"><div class="card"><h3>آخرین جریمه‌ها</h3><div id="recentFines" class="muted">هنوز جریمه‌ای ثبت نشده است.</div></div><div class="card"><h3>اطلاعیه‌های اخیر</h3><div id="recentNews" class="muted">هنوز اطلاعیه‌ای ثبت نشده است.</div></div></div>
+</section>
+<section class="page" id="members">
+<div class="heading"><h2>اعضای فمیلی</h2></div>
+<div class="card formbox"><h3>ثبت عضو جدید</h3><div class="formgrid"><div class="field"><label>نام / آیدی بازی</label><input id="mName" placeholder="@username یا نام عضو"></div><div class="field"><label>رنک</label><input id="mRank" placeholder="مثلاً ۷"></div><div class="field full"><label>توضیحات (اختیاری)</label><input id="mNote" placeholder="سمت یا توضیحات"></div></div><div class="actions" style="margin-top:12px"><button onclick="addMember()">افزودن عضو</button></div></div>
+<div class="tablewrap"><table><thead><tr><th>نام / آیدی</th><th>رنک</th><th>توضیحات</th><th>عملیات</th></tr></thead><tbody id="memberRows"></tbody></table></div>
+</section>
+<section class="page" id="fines">
+<div class="heading"><h2>مدیریت جریمه‌ها</h2></div>
+<div class="card formbox"><h3>ثبت جریمه جدید</h3><div class="formgrid"><div class="field"><label>نام / آیدی عضو</label><input id="fName" placeholder="@username"></div><div class="field"><label>مبلغ جریمه ($)</label><input id="fAmount" type="number" min="0" placeholder="مثلاً 70000"></div><div class="field full"><label>دلیل جریمه</label><input id="fReason" placeholder="مثلاً عدم انجام کوئست"></div></div><div class="actions" style="margin-top:12px"><button onclick="addFine()">ثبت جریمه</button></div></div>
+<div class="tablewrap"><table><thead><tr><th>عضو</th><th>مبلغ</th><th>دلیل</th><th>تاریخ ثبت</th><th>عملیات</th></tr></thead><tbody id="fineRows"></tbody></table></div>
+</section>
+<section class="page" id="quests">
+<div class="heading"><h2>مدیریت کوئست‌ها</h2></div>
+<div class="card formbox"><h3>ثبت کوئست</h3><div class="formgrid"><div class="field"><label>عنوان کوئست</label><input id="qTitle" placeholder="مثلاً ماینری روزانه"></div><div class="field"><label>مسئول پیگیری</label><input id="qOwner" placeholder="@username / نام مسئول"></div><div class="field full"><label>شرح و دستورالعمل</label><textarea id="qDesc" placeholder="جزئیات، تعداد دفعات و مهلت انجام..."></textarea></div></div><div class="actions" style="margin-top:12px"><button onclick="addQuest()">افزودن کوئست</button></div></div>
+<div class="grid" id="questList"></div>
+</section>
+<section class="page" id="announcements">
+<div class="heading"><h2>اطلاعیه‌های فمیلی</h2></div>
+<div class="card formbox"><h3>انتشار اطلاعیه جدید</h3><div class="formgrid"><div class="field full"><label>عنوان اطلاعیه</label><input id="nTitle" placeholder="اطلاعیه رسمی فمیلی"></div><div class="field full"><label>متن اطلاعیه</label><textarea id="nText" placeholder="متن کامل اطلاعیه را وارد کنید..."></textarea></div></div><div class="actions" style="margin-top:12px"><button onclick="addNews()">ثبت اطلاعیه</button></div></div>
+<div class="card" id="newsList"></div>
+</section>
+<section class="page" id="backup">
+<div class="heading"><h2>پشتیبان‌گیری و اطلاعات</h2></div>
+<div class="notice">اطلاعات این پنل فقط در همین مرورگر و دستگاه ذخیره می‌شود. برای جلوگیری از حذف اطلاعات، هر چند وقت یک‌بار فایل پشتیبان بگیرید. برای استفاده هم‌زمان چند مدیر یا چند دستگاه، به نسخه آنلاین با پایگاه داده نیاز دارید.</div>
+<div class="card"><h3>مدیریت اطلاعات</h3><p class="muted">می‌توانید اطلاعات اعضا، جریمه‌ها، کوئست‌ها و اطلاعیه‌ها را در قالب فایل JSON ذخیره کنید یا فایل پشتیبان قبلی را برگردانید.</p><div class="actions"><button onclick="exportData()">دانلود فایل پشتیبان</button><label class="btn secondary" style="display:inline-flex;align-items:center;cursor:pointer">بازیابی فایل پشتیبان<input type="file" accept=".json,application/json" onchange="importData(event)" style="display:none"></label><button class="danger" onclick="clearData()">حذف همه اطلاعات</button></div></div>
+</section>
+</main>
+<footer>⚜ مدیریت فمیلی 𝐀𝐑𝐓𝐄𝐌𝐈𝐒 ⚜</footer>
+<script>
+const KEY='artemis_family_manager_v1';
+let db=JSON.parse(localStorage.getItem(KEY)||'{"members":[],"fines":[],"quests":[],"news":[]}');
+const $=id=>document.getElementById(id);
+const fa=n=>Number(n||0).toLocaleString('en-US');
+function save(){localStorage.setItem(KEY,JSON.stringify(db));render()}
+function esc(s){return String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
+document.querySelectorAll('.tab').forEach(b=>b.addEventListener('click',()=>{document.querySelectorAll('.tab,.page').forEach(x=>x.classList.remove('active'));b.classList.add('active');$(''+b.dataset.page).classList.add('active')}));
+function addMember(){let name=$('mName').value.trim();if(!name)return alert('نام یا آیدی عضو را وارد کنید.');db.members.push({id:Date.now(),name,rank:$('mRank').value.trim(),note:$('mNote').value.trim()});['mName','mRank','mNote'].forEach(x=>$(x).value='');save()}
+function addFine(){let name=$('fName').value.trim(),amount=Number($('fAmount').value);if(!name||!amount||amount<0)return alert('نام عضو و مبلغ معتبر را وارد کنید.');db.fines.unshift({id:Date.now(),name,amount,reason:$('fReason').value.trim(),date:new Date().toLocaleDateString('fa-IR')});['fName','fAmount','fReason'].forEach(x=>$(x).value='');save()}
+function addQuest(){let title=$('qTitle').value.trim();if(!title)return alert('عنوان کوئست را وارد کنید.');db.quests.unshift({id:Date.now(),title,owner:$('qOwner').value.trim(),desc:$('qDesc').value.trim(),done:false});['qTitle','qOwner','qDesc'].forEach(x=>$(x).value='');save()}
+function addNews(){let title=$('nTitle').value.trim(),body=$('nText').value.trim();if(!title||!body)return alert('عنوان و متن اطلاعیه را وارد کنید.');db.news.unshift({id:Date.now(),title,body,date:new Date().toLocaleDateString('fa-IR')});['nTitle','nText'].forEach(x=>$(x).value='');save()}
+function del(type,id){if(confirm('از حذف این مورد مطمئن هستید؟')){db[type]=db[type].filter(x=>x.id!==id);save()}}
+function toggleQuest(id){let q=db.quests.find(x=>x.id===id);if(q){q.done=!q.done;save()}}
+function render(){
+$('sMembers').textContent=fa(db.members.length);$('sFines').textContent=fa(db.fines.length);$('sTotal').textContent=fa(db.fines.reduce((a,b)=>a+b.amount,0))+'$';$('sQuests').textContent=fa(db.quests.filter(q=>!q.done).length);
+$('memberRows').innerHTML=db.members.map(m=>`<tr><td>${esc(m.name)}</td><td>${esc(m.rank||'—')}</td><td>${esc(m.note||'—')}</td><td><button class="danger" onclick="del('members',${m.id})">حذف</button></td></tr>`).join('')||'<tr><td colspan="4" class="empty">هنوز عضوی ثبت نشده است.</td></tr>';
+$('fineRows').innerHTML=db.fines.map(f=>`<tr><td>${esc(f.name)}</td><td>${fa(f.amount)}$</td><td>${esc(f.reason||'—')}</td><td>${esc(f.date)}</td><td><button class="danger" onclick="del('fines',${f.id})">حذف</button></td></tr>`).join('')||'<tr><td colspan="5" class="empty">هنوز جریمه‌ای ثبت نشده است.</td></tr>';
+$('questList').innerHTML=db.quests.map(q=>`<div class="card"><div class="actions" style="justify-content:space-between"><strong>${esc(q.title)}</strong><span class="pill ${q.done?'':'red'}">${q.done?'انجام‌شده':'در حال انجام'}</span></div><p class="muted">${esc(q.desc||'بدون توضیحات')}<br>مسئول: ${esc(q.owner||'تعیین نشده')}</p><div class="actions"><button class="secondary" onclick="toggleQuest(${q.id})">${q.done?'بازگشایی':'علامت انجام‌شده'}</button><button class="danger" onclick="del('quests',${q.id})">حذف</button></div></div>`).join('')||'<div class="card muted">هنوز کوئستی ثبت نشده است.</div>';
+$('newsList').innerHTML=db.news.map(n=>`<div class="item"><div class="actions" style="justify-content:space-between"><strong>${esc(n.title)}</strong><span class="muted">${esc(n.date)}</span></div><p>${esc(n.body).replace(/\n/g,'<br>')}</p><div class="actions" style="margin-top:8px"><button class="secondary" onclick="copyNews(${n.id})">کپی متن</button><button class="danger" onclick="del('news',${n.id})">حذف</button></div></div>`).join('')||'<div class="empty">هنوز اطلاعیه‌ای ثبت نشده است.</div>';
+$('recentFines').innerHTML=db.fines.slice(0,4).map(f=>`<div class="item">${esc(f.name)} — <strong>${fa(f.amount)}$</strong></div>`).join('')||'هنوز جریمه‌ای ثبت نشده است.';
+$('recentNews').innerHTML=db.news.slice(0,3).map(n=>`<div class="item"><strong>${esc(n.title)}</strong><p>${esc(n.date)}</p></div>`).join('')||'هنوز اطلاعیه‌ای ثبت نشده است.';
+}
+function copyNews(id){let n=db.news.find(x=>x.id===id);if(n)navigator.clipboard.writeText(n.title+'\n━━━━━━━━━━━━\n'+n.body+'\n\nمدیریت فمیلی 𝐀𝐑𝐓𝐄𝐌𝐈𝐒').then(()=>alert('متن اطلاعیه کپی شد.')).catch(()=>alert('کپی خودکار در این مرورگر در دسترس نیست.'))}
+function exportData(){let blob=new Blob([JSON.stringify(db,null,2)],{type:'application/json'}),a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='artemis-family-backup.json';a.click();URL.revokeObjectURL(a.href)}
+function importData(e){let f=e.target.files[0];if(!f)return;let r=new FileReader();r.onload=()=>{try{let x=JSON.parse(r.result);if(!['members','fines','quests','news'].every(k=>Array.isArray(x[k])))throw 0;db=x;save();alert('اطلاعات با موفقیت بازیابی شد.')}catch{alert('فایل پشتیبان معتبر نیست.')}};r.readAsText(f);e.target.value=''}
+function clearData(){if(confirm('تمام اطلاعات این پنل برای همیشه از این مرورگر حذف شود؟')){db={members:[],fines:[],quests:[],news:[]};save()}}
+render();
+</script>
+</body></html>
